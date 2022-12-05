@@ -7,6 +7,13 @@ RSpec.describe Search, type: :model do
       search = user.searches.create(:title => nil)
       expect(search).to_not be_valid
     end
+
+    it "save a unique title" do
+      user = User.create(:username => "Mar")
+      search = user.searches.create(:title => "hello")
+      search2 = user.searches.create(:title => "hello")
+      expect(search2).to_not be_valid
+    end
     
     it "save search title data" do
       search = Search.create(:title => "New Search")

@@ -6,6 +6,12 @@ RSpec.describe User, type: :model do
       user = User.create(:username => nil)
       expect(user).to_not be_valid
     end
+
+    it "save a unique username" do
+      user = User.create(:username => "Mar")
+      user2 = User.create(:username => "Mar")
+      expect(user2).to_not be_valid
+    end
     
     it "save username data" do
       user = User.create(:username => "Mar")
