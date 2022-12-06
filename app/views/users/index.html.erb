@@ -2,14 +2,15 @@
 
 <h1>Username</h1>
 
-<%= form_tag "/users", method: "GET", autocomplete: "off" do %>
-  <%= search_field_tag :username, params[:username], autocomplete: "false" %>
+<%= form_tag "/users", method: "GET" do %>
+  <%= search_field_tag :username, params[:username]%>
   <%= submit_tag "Search" %>
 <% end %>
 
 <div id="users">
   <% @users.each do |user| %>
-    <%= render user %>
+  <%= render user %>
+    
     <p>
       <%= button_to "delete", user, method: :delete %>
     </p>
@@ -17,4 +18,3 @@
 </div>
 
 <%= link_to "New user", new_user_path %>
-
