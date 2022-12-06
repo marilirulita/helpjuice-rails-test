@@ -3,7 +3,7 @@
 <%= render @search %>
 
 <div>
-  <%= link_to "Back to searches", searches_path %>
+  <%= link_to "Back to searches", user_searches_path(@user.id, @search.id) %>
 
-  <%= button_to "Destroy this search", @search, method: :delete %>
+  <%= button_to "Destroy this search", @user_search, method: :delete %>
 </div>

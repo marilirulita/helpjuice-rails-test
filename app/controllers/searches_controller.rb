@@ -3,25 +3,30 @@ class SearchesController < ApplicationController
 
   # GET /searches or /searches.json
   def index
-    @searches = Search.all
+    @user = User.find(params[:user_id])
+    @searches = @user.searches.all
   end
 
   # GET /searches/1 or /searches/1.json
   def show
+    @user = User.find(params[:user_id])
+    @search = @user.searches.find(params[:id])
   end
 
   # GET /searches/new
   def new
     @search = Search.new
+    @user = User.find(params[:user_id])
   end
 
   # POST /searches or /searches.json
   def create
-    @search = Search.new(search_params)
+    @user = User.find(params[:user_id])
+    @search = @user.searches.new(search_params)
 
     respond_to do |format|
       if @search.save
-        format.html { redirect_to search_url(@search), notice: "Search was successfully created." }
+        format.html { redirect_to user_searches_url, notice: "Search was successfully created." }
         format.json { render :show, status: :created, location: @search }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -35,7 +40,7 @@ class SearchesController < ApplicationController
     @search.destroy
 
     respond_to do |format|
-      format.html { redirect_to searches_url, notice: "Search was successfully destroyed." }
+      format.html { redirect_to user_searches_url, notice: "Search was successfully destroyed." }
       format.json { head :no_content }
     end
   end

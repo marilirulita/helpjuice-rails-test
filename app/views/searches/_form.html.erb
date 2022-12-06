@@ -1,4 +1,4 @@
-<%= form_with(model: search) do |form| %>
+<%= form_with model: [ @user, @user.searches.build ] do |form| %>
   <% if search.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(search.errors.count, "error") %> prohibited this search from being saved:</h2>
