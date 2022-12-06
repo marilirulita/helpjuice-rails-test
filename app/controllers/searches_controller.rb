@@ -7,9 +7,15 @@ class SearchesController < ApplicationController
     @search = @user.searches.new
     
     if params[:title].present?
-      @searches = @user.searches.where("username LIKE ?","%#{params[:title]}%")
+      @articles = Article.where("title ILIKE ?","%#{params[:title]}%")
       else
-        @searches = @user.searches.all
+        @articles = Article.all
+      end
+
+      if turbo_frame_request?
+        render partial: "articles", locals: { articles: @articles }
+      else
+        render :index
       end
   end
 

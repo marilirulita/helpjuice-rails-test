@@ -2,14 +2,16 @@
 
 <h1>Searches</h1>
 
-<%= render "form", search: @search %>
+<%= form_tag user_searches_path(@user), method: "GET", data: {turbo_frame: "articles", turbo_action: "advance"} do %>
+  <%= search_field_tag :title, params[:title]%>
+  <%= submit_tag "Search" %>
+<% end %>
 
 <div id="searches">
-  <% @searches.each do |search| %>
-    <%= render search %>
-    <p>
-      <%= button_to "Delete", user_search_path(@user.id, search.id), method: :delete %>
-    </p>
+  <% @articles.each do |article| %>
+  <div>
+    <%= article.title %>
+    </div>
   <% end %>
 </div>
 
