@@ -2,6 +2,11 @@
 
 <h1>Username</h1>
 
+<%= form_tag "/users", method: "GET" do %>
+  <%= text_field_tag :username, params[:username] %>
+  <%= submit_tag "Search" %>
+<% end %>
+
 <div id="users">
   <% @users.each do |user| %>
     <%= render user %>
@@ -12,3 +17,4 @@
 </div>
 
 <%= link_to "New user", new_user_path %>
+

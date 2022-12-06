@@ -3,7 +3,11 @@ class UsersController < ApplicationController
 
   # GET /users or /users.json
   def index
+    if params[:username].present?
+    @users = User.where("username LIKE ?","%#{params[:username]}%")
+    else
     @users = User.all
+    end
   end
 
   # GET /users/new
