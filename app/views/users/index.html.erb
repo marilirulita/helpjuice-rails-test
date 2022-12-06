@@ -2,8 +2,8 @@
 
 <h1>Username</h1>
 
-<%= form_tag "/users", method: "GET" do %>
-  <%= text_field_tag :username, params[:username] %>
+<%= form_tag "/users", method: "GET", autocomplete: "off" do %>
+  <%= search_field_tag :username, params[:username], autocomplete: "false" %>
   <%= submit_tag "Search" %>
 <% end %>
 

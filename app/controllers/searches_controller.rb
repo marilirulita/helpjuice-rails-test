@@ -4,7 +4,13 @@ class SearchesController < ApplicationController
   # GET /searches or /searches.json
   def index
     @user = User.find(params[:user_id])
-    @searches = @user.searches.all
+    @search = @user.searches.new
+    
+    if params[:title].present?
+      @searches = @user.searches.where("username LIKE ?","%#{params[:title]}%")
+      else
+        @searches = @user.searches.all
+      end
   end
 
   # GET /searches/1 or /searches/1.json
